@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Piano</title>
+	<style type="text/css">
+		*
+{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+body
+{
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.board
+{
+	position: relative;
+	display: flex;
+}
+
+.white
+{
+	position: relative;
+	width: 10vw;
+	height: 80vh;
+	background:#f9eaff;
+	margin-left: 5px;
+	border-radius: 10px;
+	box-shadow: -3px -3px 6px rgba(255,255,255,0.4),
+	 0px 0px 8px rgba(0,0,0,0.8);
+	 text-align: center;
+}
+
+.white h1
+{
+	position: absolute;
+	left: 50%;
+	border-top: 10%;
+	transform: translate(-50%,20%);
+
+}
+
+.white:active
+{
+	filter: brightness(90%);
+}
+
+span
+{
+	position: absolute;
+	left:40%;
+	top:-10%;
+}
+
+span button
+{
+	padding:10px;
+	font-family: sans-serif;
+	font-size: 3vmin;
+
+}
+
+
+@media screen and (max-width: 400px)
+{
+	.white
+	{
+		width:12vmin;
+		height: 70vmax; 
+	}
+}
+	</style>
+</head>
+<body>
+
+	<div class="board w">
+		
+		<!--8 white-->
+
+		<div ontouchstart="playSound(event)" id="B" data-key="B" class="white btn">
+			<h1>A</h1>
+		</div>
+
+
+		<div ontouchstart="playSound(event)" id="bb" data-key="bb" class="white btn">
+			<h1>C</h1>
+		</div>
+		
+		<div ontouchstart="playSound(event)" id="D" data-key="D" class="white btn">
+			<h1>D</h1>
+		</div>
+
+		<div ontouchstart="playSound(event)" id="db" data-key="db" class="white btn">
+			<h1>G</h1>
+		</div>
+
+		<div ontouchstart="playSound(event)" id="f" data-key="f" class="	white btn">
+			<h1>F</h1>
+		</div>
+
+		<div ontouchstart="playSound(event)" id="g" data-key="g" class="	white btn">
+			<h1>G</h1>
+		</div>
+
+		<div ontouchstart="playSound(event)" id="h" data-key="h" class="	white btn">
+			<h1>H</h1>
+		</div>
+
+		<span ><button ontouchstart="playauto()">Play music</button></span>		
+
+		<audio src="B.wav" id="Baudio"></audio>
+		<audio src="bb.wav" id="bbaudio"></audio>
+		<audio src="D.wav" id="Daudio" ></audio>
+		<audio src="db.wav" id="dbaudio"></audio>
+		<audio src="f.mp3" id="faudio"></audio>
+		<audio src="g.mp3" id="gaudio"></audio>
+		<audio src="h.mp3" id="haudio"></audio>
+		<audio src="auto.mp3" id="auto"></audio>
+
+	</div>
+
+</body>
+
+	<script type="text/javascript" >
+		function playSound(event)
+{
+	let btn=document.getElementById(event.target.id);
+
+	let key=btn.dataset.key;
+	let audioid=key+"audio";
+	let sound=document.getElementById(audioid);
+	console.log(sound);
+
+	switch(key)
+	{
+		case 'db':
+			sound.playbackRate=2;
+			sound.play();
+			break;
+
+		case 'B':
+			sound.playbackRate=2;
+			sound.play();
+			break;
+
+		case 'D':
+			sound.playbackRate=2;
+			sound.play();
+			break;
+
+		case 'bb':
+			sound.playbackRate=2;
+			sound.play();
+			break;
+
+		case 'f':
+			sound.playbackRate=2;
+			sound.play();
+			break;
+
+		case 'g':
+			sound.playbackRate=2;
+			sound.play();
+			break;
+
+		case 'h':
+			sound.playbackRate=2;
+			sound.play();
+			break;
+
+	}
+
+
+	
+
+}
+let audioflag=0;
+
+function playauto()
+{
+	let sound=document.getElementById("auto");
+	
+	if(audioflag==1)
+	{
+		document.querySelector("button").innerHTML="STOP";
+		sound.play();
+		audioflag=0;
+	}
+	
+	else if(audioflag==0)
+	{
+		document.querySelector("button").innerHTML="Play music";
+		sound.pause();
+		audioflag=1;
+	}
+
+}
+	</script>
+
+</html>
